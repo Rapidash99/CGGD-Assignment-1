@@ -34,14 +34,14 @@ namespace cg
 		ClearRenderTarget(unsigned short width, unsigned short height);
 		virtual ~ClearRenderTarget();
 
-		void Clear();
+        virtual void Clear();
 		void Save(std::string filename) const;
 
 	protected:
 		void SetPixel(unsigned short x, unsigned short y, color color);
 
-		unsigned short height;
-		unsigned short width;
+		unsigned height;
+		unsigned width;
 
 		std::vector<color> frame_buffer;
 	};

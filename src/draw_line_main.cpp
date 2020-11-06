@@ -2,11 +2,11 @@
 
 #include <iostream>
 
-int main(int argc, char* argv[])
+int main([[maybe_unused]] int argc, [[maybe_unused]] char* argv[])
 {
     try
     {
-        cg::LineDrawing* render = new cg::LineDrawing(1920, 1080);
+        auto* render = new cg::LineDrawing(1920, 1080);
 
         render->Clear();
 

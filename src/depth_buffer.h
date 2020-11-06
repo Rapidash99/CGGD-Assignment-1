@@ -14,16 +14,13 @@ namespace cg
 		ZCulling(unsigned short width, unsigned short height, std::string obj_file);
 		virtual ~ZCulling();
 
-		void DrawScene();
 		void Clear();
 
 	protected:
-		void DrawTriangle(float4 triangle[3]);
+		void DrawTriangle(cg::face face);
 		void SetPixel(unsigned short x, unsigned short y, color color, float z);
 		std::vector<float> depth_buffer;
 
-		std::vector<color> colors;
-		int draw_call_counter;
 	};
 
 }

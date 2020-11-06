@@ -5,7 +5,7 @@
 
 #include <linalg.h>
 using namespace linalg::aliases;
-
+using namespace linalg::ostream_overloads;
 #include <iostream>
 #include <filesystem>
 
@@ -13,38 +13,51 @@ using namespace linalg::aliases;
 namespace cg
 {
 
-	struct face
-	{
-		float4 vertexes[3];
-	};
+    struct face
+    {
+        float4 vertexes[3];
+        unsigned primitive_id;
+    };
 
-	class ObjParser
-	{
-	public:
-		ObjParser(std::string filename);
-		virtual ~ObjParser();
+    class ObjParser
+    {
+    public:
+        ObjParser(std::string filename);
+        virtual ~ObjParser();
 
-		void Parse();
+        void Parse();
 
-		const std::vector<face>& GetFaces();
+        const std::vector<face>& GetFaces();
 
-	protected:
-		std::filesystem::path filename;
-		std::vector<face> faces;
+    protected:
+        std::filesystem::path filename;
+        std::vector<face> faces;
 
-	};
+    };
 
-	class Projections : public LineDrawing
-	{
-	public:
-		Projections(unsigned short width, unsigned short height, std::string obj_file);
-		virtual ~Projections();
+    struct ConstantBuffer
+    {
+        float4x4 World;
+        float4x4 View;
+        float4x4 Projection;
+    };
 
-		void DrawScene();
+    class Projections : public LineDrawing
+    {
+    public:
+        Projections(unsigned short width, unsigned short height, std::string obj_file);
+        virtual ~Projections();
 
-	protected:
-		ObjParser* parser;
+        virtual void DrawScene();
 
-	};
+    protected:
+        ObjParser* parser;
+        ConstantBuffer cb;
+
+        float4 VertexShader(float4 face);
+        void Rasterizer(face face);
+        virtual void DrawTriangle(face face);
+
+    };
 
 }

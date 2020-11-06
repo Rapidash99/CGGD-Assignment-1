@@ -10,11 +10,11 @@ namespace cg
 	{
 	public:
 		LineDrawing(unsigned short width, unsigned short height);
-		virtual ~LineDrawing();
+		~LineDrawing() override;
 
-		void DrawLine(unsigned short x_begin, unsigned short y_begin, unsigned short x_end, unsigned short y_end, color color);
+		void DrawLine(unsigned xBegin, unsigned yBegin, unsigned xEnd, unsigned yEnd, color color);
 
-		void DrawScene();
+        virtual void DrawScene();
 
 	};
 

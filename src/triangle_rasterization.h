@@ -1,7 +1,7 @@
 #pragma once
 
 
-#include "../../../Desktop/projections.h"
+#include "projections.h"
 
 namespace cg
 {

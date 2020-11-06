@@ -31,7 +31,6 @@
 *.app
 bin/
 obj/
-results/
 
 # VS
 .vs/
